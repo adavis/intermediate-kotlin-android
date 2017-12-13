@@ -1,0 +1,52 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.example.solarsystem.PlanetDetailFragment">
+
+    <TextView
+        android:id="@+id/planet_description"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:lineSpacingExtra="8sp"
+        android:textIsSelectable="true"/>
+
+    <TextView
+        android:id="@+id/planet_composition"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:drawableStart="@drawable/ic_landscape"
+        android:drawablePadding="24dp"
+        android:textIsSelectable="true"
+        tools:text="Terrestrial"/>
+
+    <TextView
+        android:id="@+id/planet_moons"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:drawableStart="@drawable/ic_brightness"
+        android:drawablePadding="24dp"
+        android:textIsSelectable="true"
+        tools:text="2 Known Moon(s)"/>
+
+    <TextView
+        android:id="@+id/planet_orbit"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:drawableStart="@drawable/ic_loop"
+        android:drawablePadding="24dp"
+        android:textIsSelectable="true"
+        tools:text="1 Orbital Period (years)"/>
+
+</LinearLayout>
