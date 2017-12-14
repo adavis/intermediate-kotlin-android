@@ -19,8 +19,7 @@ class PlanetDetailActivity : AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            view.showSnackbar("My message")
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -31,9 +30,9 @@ class PlanetDetailActivity : AppCompatActivity() {
 
             val fragment = PlanetDetailFragment()
             fragment.arguments = arguments
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.planet_detail_container, fragment)
-                    .commit()
+            supportFragmentManager.transact {
+                add(R.id.planet_detail_container, fragment)
+            }
         }
     }
 
