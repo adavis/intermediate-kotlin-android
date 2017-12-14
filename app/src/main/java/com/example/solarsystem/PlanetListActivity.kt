@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.solarsystem.dummy.Planet
 import com.example.solarsystem.dummy.PlanetsDataProvider
+import kotlinx.android.synthetic.main.activity_planet_list.*
+import kotlinx.android.synthetic.main.planet_list.*
 
 class PlanetListActivity : AppCompatActivity() {
 
@@ -19,11 +21,9 @@ class PlanetListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_planet_list)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.planet_list)
-        setupRecyclerView(recyclerView)
+        setupRecyclerView(planet_list)
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
