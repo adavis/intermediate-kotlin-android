@@ -1,3 +1,5 @@
+@file:JvmName("PlanetUtils")
+
 package com.example.solarsystem.dummy
 
 import com.example.solarsystem.GAS_GIANT
