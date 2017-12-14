@@ -10,11 +10,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.solarsystem.dummy.Planet
 import com.example.solarsystem.dummy.PlanetsDataProvider
+import com.example.solarsystem.dummy.composition
 
 const val ARG_ITEM_ID = "item_id"
 
-private const val TERRESTRIAL = "Terrestrial"
-private const val GAS_GIANT = "Gas Giant"
+const val TERRESTRIAL = "Terrestrial"
+const val GAS_GIANT = "Gas Giant"
 
 class PlanetDetailFragment : Fragment() {
 
@@ -59,7 +60,7 @@ class PlanetDetailFragment : Fragment() {
 
         planet?.let {
             planetDescription.text = it.description
-            planetComposition.text = if (it.inner) TERRESTRIAL else GAS_GIANT
+            planetComposition.text = it.composition
             planetMoons.text = getString(R.string.num_known_moons, it.knownMoons)
             planetOrbit.text = getString(R.string.orbital_period_years, it.orbitalPeriod)
         }

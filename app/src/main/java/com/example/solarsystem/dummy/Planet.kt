@@ -1,6 +1,11 @@
 package com.example.solarsystem.dummy
 
+import com.example.solarsystem.GAS_GIANT
+import com.example.solarsystem.TERRESTRIAL
 import java.util.*
+
+val Planet.composition: String
+    get() = if (inner) TERRESTRIAL else GAS_GIANT
 
 data class Planet(
         val id: String = UUID.randomUUID().toString(),
