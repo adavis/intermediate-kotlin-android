@@ -10,7 +10,7 @@ fun isEven(a: Int): String {
     }
 }
 
-fun stringToInt(x: String) : Int {
+fun stringToInt(x: String): Int {
     return try {
         x.toInt()
     } catch (e: NumberFormatException) {
