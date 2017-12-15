@@ -12,8 +12,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.solarsystem.dummy.Planet
 import com.example.solarsystem.dummy.PlanetsDataProvider
+import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.activity_planet_list.*
 import kotlinx.android.synthetic.main.planet_list.*
+import kotlinx.android.synthetic.main.planet_list_content.*
 
 class PlanetListActivity : AppCompatActivity() {
 
@@ -51,8 +53,8 @@ class PlanetListActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val planet = values[position]
-            holder.nameText.text = planet.name
-            holder.imageView.setImageResource(planet.imageResourceId)
+            holder.planet_name.text = planet.name
+            holder.planet_image.setImageResource(planet.imageResourceId)
 
             holder.itemView.tag = planet
             holder.itemView.setOnClickListener(clickListener)
@@ -60,9 +62,7 @@ class PlanetListActivity : AppCompatActivity() {
 
         override fun getItemCount(): Int = values.size
 
-        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val nameText: TextView = view.findViewById(R.id.planet_name)
-            val imageView: ImageView = view.findViewById(R.id.planet_image)
-        }
+        inner class ViewHolder(override val containerView: View)
+            : RecyclerView.ViewHolder(containerView), LayoutContainer
     }
 }
