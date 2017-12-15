@@ -16,8 +16,11 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.activity_planet_list.*
 import kotlinx.android.synthetic.main.planet_list.*
 import kotlinx.android.synthetic.main.planet_list_content.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.warn
 
-class PlanetListActivity : AppCompatActivity() {
+class PlanetListActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +41,13 @@ class PlanetListActivity : AppCompatActivity() {
 
         private val clickListener = View.OnClickListener { view ->
             val item = view.tag as Planet
-            val context = view.context
-            val intent = Intent(context, PlanetDetailActivity::class.java)
-            intent.putExtra(ARG_ITEM_ID, item.id)
-
-            context.startActivity(intent)
+//            val context = view.context
+//            val intent = Intent(context, PlanetDetailActivity::class.java)
+//            intent.putExtra(ARG_ITEM_ID, item.id)
+//
+//            context.startActivity(intent)
+            warn { "Clicked on a planet: $item" }
+            startActivity<PlanetDetailActivity>(ARG_ITEM_ID to item.id)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
