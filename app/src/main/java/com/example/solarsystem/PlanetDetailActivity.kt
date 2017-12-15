@@ -30,9 +30,9 @@ class PlanetDetailActivity : AppCompatActivity() {
 
             val fragment = PlanetDetailFragment()
             fragment.arguments = arguments
-            supportFragmentManager.transact {
-                add(R.id.planet_detail_container, fragment)
-            }
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.planet_detail_container, fragment)
+                    .commit()
         }
     }
 
