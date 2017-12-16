@@ -6,6 +6,9 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.support.v4.withArguments
+import org.jetbrains.anko.toast
 
 class PlanetDetailActivity : AppCompatActivity() {
 
@@ -18,17 +21,16 @@ class PlanetDetailActivity : AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { view ->
-            view.showSnackbar("My message")
+            snackbar(view, "My message", "Action") {
+                toast("inside the action")
+            }
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (savedInstanceState == null) {
-            val arguments = Bundle()
-            arguments.putString(ARG_ITEM_ID, intent.getStringExtra(ARG_ITEM_ID))
-
             val fragment = PlanetDetailFragment()
-            fragment.arguments = arguments
+                    .withArguments(ARG_ITEM_ID to intent.getStringExtra(ARG_ITEM_ID))
             supportFragmentManager.beginTransaction()
                     .add(R.id.planet_detail_container, fragment)
                     .commit()
