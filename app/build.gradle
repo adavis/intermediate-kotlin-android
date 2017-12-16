@@ -34,6 +34,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation "org.jetbrains.anko:anko-design:$anko_version"
     implementation "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-sdk21:$anko_version"
 
     testImplementation 'junit:junit:4.12'
 
