@@ -5,28 +5,34 @@ import android.widget.TextView
 import org.jetbrains.anko.*
 
 class PlanetDetailUi : AnkoComponent<PlanetDetailFragment> {
+
+    lateinit var planetDescription: TextView
+    lateinit var planetComposition: TextView
+    lateinit var planetMoons: TextView
+    lateinit var planetOrbit: TextView
+
     override fun createView(ui: AnkoContext<PlanetDetailFragment>): View {
         return with(ui) {
             val container = verticalLayout {
                 lparams(matchParent)
 
-                textView {
+                planetDescription = textView {
                     setLineSpacing(8f, 1f)
                 }.lparams {
                     topMargin = dip(16)
                 }
 
-                textView {
+                planetComposition = textView {
                     setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_landscape, 0, 0, 0)
                 }
 
-                textView {
+                planetMoons = textView {
                     setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_brightness, 0, 0, 0)
                 }
 
-                textView {
+                planetOrbit = textView {
                     setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_loop, 0, 0, 0)
                 }
