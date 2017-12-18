@@ -1,12 +1,13 @@
 package com.example.solarsystem
 
 import android.view.View
+import android.widget.TextView
 import org.jetbrains.anko.*
 
 class PlanetDetailUi : AnkoComponent<PlanetDetailFragment> {
     override fun createView(ui: AnkoContext<PlanetDetailFragment>): View {
         return with(ui) {
-            verticalLayout {
+            val container = verticalLayout {
                 lparams(matchParent)
 
                 textView {
@@ -29,7 +30,20 @@ class PlanetDetailUi : AnkoComponent<PlanetDetailFragment> {
                     setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_loop, 0, 0, 0)
                 }
+            }
 
+            container.applyRecursively { view ->
+                when(view) {
+                    is TextView -> {
+                        with(view) {
+                            padding = dip(16)
+                            compoundDrawablePadding = dip(16)
+                            setTextIsSelectable(true)
+                            layoutParams.width = matchParent
+                            textAppearance = R.style.TextAppearance_AppCompat_Medium
+                        }
+                    }
+                }
 
             }
         }
