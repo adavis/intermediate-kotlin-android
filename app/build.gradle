@@ -50,3 +50,9 @@ repositories {
 androidExtensions {
     experimental = true
 }
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}

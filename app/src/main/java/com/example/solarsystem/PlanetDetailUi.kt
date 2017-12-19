@@ -3,6 +3,8 @@ package com.example.solarsystem
 import android.view.View
 import android.widget.TextView
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk21.coroutines.onClick
+import org.jetbrains.anko.sdk21.coroutines.onLongClick
 
 class PlanetDetailUi : AnkoComponent<PlanetDetailFragment> {
 
@@ -18,6 +20,10 @@ class PlanetDetailUi : AnkoComponent<PlanetDetailFragment> {
 
                 planetDescription = textView {
                     setLineSpacing(8f, 1f)
+
+                    onClick {
+                        toast("Hey world from Anko!")
+                    }
                 }.lparams {
                     topMargin = dip(16)
                 }
@@ -25,6 +31,10 @@ class PlanetDetailUi : AnkoComponent<PlanetDetailFragment> {
                 planetComposition = textView {
                     setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.ic_landscape, 0, 0, 0)
+
+                    onLongClick {
+                        owner.goToSpaceWebsite()
+                    }
                 }
 
                 planetMoons = textView {

@@ -12,6 +12,7 @@ import com.example.solarsystem.dummy.Planet
 import com.example.solarsystem.dummy.PlanetsDataProvider
 import com.example.solarsystem.dummy.composition
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.support.v4.browse
 import org.jetbrains.anko.support.v4.ctx
 
 const val ARG_ITEM_ID = "item_id"
@@ -62,6 +63,10 @@ class PlanetDetailFragment : Fragment() {
         planet?.let {
             arguments.putString(ARG_ITEM_ID, it.id)
         }
+    }
+
+    fun goToSpaceWebsite() {
+        browse("http://www.space.com")
     }
 
 }
