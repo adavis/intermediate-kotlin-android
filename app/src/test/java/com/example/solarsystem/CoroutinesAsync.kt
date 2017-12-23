@@ -63,4 +63,27 @@ class CoroutinesAsyncTest {
         println("Stopping...")
     }
 
+    @Test
+    fun usingAsyncWithSuspendFunction() {
+        println("Starting...")
+
+        launch(CommonPool) {
+            val result: Deferred<Int> = async(CommonPool) {
+                ourWork()
+            }
+
+            println("the result: ${result.await()}")
+        }
+
+        Thread.sleep(1_500L)
+
+        println("Stopping...")
+    }
+
+    private suspend fun ourWork(): Int {
+        delay(1_000L)
+        println("Inside first...")
+        return 42
+    }
+
 }
