@@ -1,15 +1,11 @@
 package com.example.solarsystem
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.example.solarsystem.dummy.Planet
 import com.example.solarsystem.dummy.PlanetsDataProvider
 import kotlinx.android.extensions.LayoutContainer
@@ -28,11 +24,7 @@ class PlanetListActivity : AppCompatActivity(), AnkoLogger {
 
         setSupportActionBar(toolbar)
 
-        setupRecyclerView(planet_list)
-    }
-
-    private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter = PlanetsAdapter(PlanetsDataProvider.ITEMS)
+        planet_list.adapter = PlanetsAdapter(PlanetsDataProvider.ITEMS)
     }
 
     inner class PlanetsAdapter internal constructor(
@@ -41,11 +33,6 @@ class PlanetListActivity : AppCompatActivity(), AnkoLogger {
 
         private val clickListener = View.OnClickListener { view ->
             val item = view.tag as Planet
-//            val context = view.context
-//            val intent = Intent(context, PlanetDetailActivity::class.java)
-//            intent.putExtra(ARG_ITEM_ID, item.id)
-//
-//            context.startActivity(intent)
             warn { "Clicked on a planet: $item" }
             startActivity<PlanetDetailActivity>(ARG_ITEM_ID to item.id)
         }
