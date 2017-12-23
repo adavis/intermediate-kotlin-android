@@ -12,7 +12,12 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.activity_planet_list.*
 import kotlinx.android.synthetic.main.planet_list.*
 import kotlinx.android.synthetic.main.planet_list_content.*
+import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.coroutines.experimental.bg
+import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.warn
 
@@ -24,7 +29,22 @@ class PlanetListActivity : AppCompatActivity(), AnkoLogger {
 
         setSupportActionBar(toolbar)
 
-        planet_list.adapter = PlanetsAdapter(PlanetsDataProvider.ITEMS)
+        getPlanetsTimeConsuming()
+//        planet_list.adapter = PlanetsAdapter(PlanetsDataProvider.ITEMS)
+    }
+
+    private fun getPlanetsTimeConsuming() {
+        launch(UI) {
+            info("starting launch on ${Thread.currentThread().name}")
+
+            val planets: Deferred<List<Planet>> = bg {
+                info("starting bg on ${Thread.currentThread().name}")
+                Thread.sleep(1_000L)
+                PlanetsDataProvider.ITEMS
+            }
+
+            planet_list.adapter = PlanetsAdapter(planets.await())
+        }
     }
 
     inner class PlanetsAdapter internal constructor(
