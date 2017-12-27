@@ -3,4 +3,7 @@
     <string name="title_planet_detail">Planet Detail</string>
     <string name="num_known_moons">%d Known Moon(s)</string>
     <string name="orbital_period_years">%.3f Orbital Period (years)</string>
+    <string name="only_terrestrial">Only Terrestrial</string>
+    <string name="only_gas_giants">Only Gas Giants</string>
+    <string name="show_all">Show All</string>
 </resources>

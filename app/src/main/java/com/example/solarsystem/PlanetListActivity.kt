@@ -3,9 +3,7 @@ package com.example.solarsystem
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.example.solarsystem.dummy.Planet
 import com.example.solarsystem.dummy.PlanetsDataProvider
 import kotlinx.android.extensions.LayoutContainer
@@ -23,6 +21,8 @@ import org.jetbrains.anko.warn
 
 class PlanetListActivity : AppCompatActivity(), AnkoLogger {
 
+    private lateinit var planetsAdapter: PlanetsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_planet_list)
@@ -30,7 +30,6 @@ class PlanetListActivity : AppCompatActivity(), AnkoLogger {
         setSupportActionBar(toolbar)
 
         getPlanetsTimeConsuming()
-//        planet_list.adapter = PlanetsAdapter(PlanetsDataProvider.ITEMS)
     }
 
     private fun getPlanetsTimeConsuming() {
@@ -43,12 +42,14 @@ class PlanetListActivity : AppCompatActivity(), AnkoLogger {
                 PlanetsDataProvider.ITEMS
             }
 
-            planet_list.adapter = PlanetsAdapter(planets.await())
+            planetsAdapter = PlanetsAdapter(planets.await())
+            planet_list.adapter = planetsAdapter
         }
     }
 
+    //region Planet List Adapter
     inner class PlanetsAdapter internal constructor(
-            private val values: List<Planet>
+            internal var values: List<Planet>
     ) : RecyclerView.Adapter<PlanetsAdapter.ViewHolder>() {
 
         private val clickListener = View.OnClickListener { view ->
@@ -76,5 +77,31 @@ class PlanetListActivity : AppCompatActivity(), AnkoLogger {
 
         inner class ViewHolder(override val containerView: View)
             : RecyclerView.ViewHolder(containerView), LayoutContainer
+    }
+    //endregion
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_planet_list, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.action_filter_none -> {
+                planetsAdapter.values = PlanetsDataProvider.ITEMS
+                planetsAdapter.notifyDataSetChanged()
+                return true
+            }
+
+            R.id.action_filter_terrestrial -> {
+
+            }
+
+            R.id.action_filter_gas_giants -> {
+
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
