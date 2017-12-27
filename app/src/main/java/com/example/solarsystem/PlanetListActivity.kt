@@ -94,11 +94,15 @@ class PlanetListActivity : AppCompatActivity(), AnkoLogger {
             }
 
             R.id.action_filter_terrestrial -> {
-
+                planetsAdapter.values = PlanetsDataProvider.ITEMS.filter { it.inner }
+                planetsAdapter.notifyDataSetChanged()
+                return true
             }
 
             R.id.action_filter_gas_giants -> {
-
+                planetsAdapter.values = PlanetsDataProvider.ITEMS.filterNot { it.inner }
+                planetsAdapter.notifyDataSetChanged()
+                return true
             }
         }
 
