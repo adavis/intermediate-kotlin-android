@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.example.solarsystem.dummy.Planet
 import com.example.solarsystem.dummy.PlanetsDataProvider
 import com.example.solarsystem.dummy.composition
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.browse
-import org.jetbrains.anko.support.v4.ctx
 
 const val ARG_ITEM_ID = "item_id"
 
@@ -31,10 +29,10 @@ class PlanetDetailFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        if (arguments.containsKey(ARG_ITEM_ID)) {
-            planet = PlanetsDataProvider.ITEM_MAP[arguments.getString(ARG_ITEM_ID)]
+        if (arguments?.containsKey(ARG_ITEM_ID) == true) {
+            planet = PlanetsDataProvider.ITEM_MAP[arguments?.getString(ARG_ITEM_ID)!!]
             planet?.let {
-                val activity = this.activity
+                val activity = requireActivity()
                 val appBarLayout = activity.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)
                 appBarLayout.title = it.name
 
@@ -43,7 +41,7 @@ class PlanetDetailFragment : Fragment() {
             }
         }
 
-        return ui.createView(AnkoContext.Companion.create(ctx, this))
+        return ui.createView(AnkoContext.Companion.create(requireContext(), this))
     }
 
     override fun onResume() {
@@ -57,11 +55,11 @@ class PlanetDetailFragment : Fragment() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
         planet?.let {
-            arguments.putString(ARG_ITEM_ID, it.id)
+            arguments?.putString(ARG_ITEM_ID, it.id)
         }
     }
 

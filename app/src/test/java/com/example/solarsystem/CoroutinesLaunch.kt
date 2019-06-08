@@ -1,8 +1,8 @@
 package com.example.solarsystem
 
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.junit.Test
 
 class CoroutinesLaunchTest {
@@ -11,7 +11,7 @@ class CoroutinesLaunchTest {
     fun startWithLaunchNoSleep() {
         println("Starting...")
 
-        launch(CommonPool) {
+        GlobalScope.launch {
             delay(1_000L)
             println("Inside...")
         }
@@ -23,7 +23,7 @@ class CoroutinesLaunchTest {
     fun startWithLaunchSleep() {
         println("Starting...")
 
-        launch(CommonPool) {
+        GlobalScope.launch {
             delay(1_000L)
             println("Inside...")
         }
